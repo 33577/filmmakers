@@ -1,10 +1,11 @@
+import "./App.css";
 import React from 'react';
-import Dropzone from "./components/Dropzone";
+import Dragger from "./components/input/Dragger";
 
 function App() {
   return (
     <div className="App">
-      <Dropzone />
+      <Dragger />
     </div>
   );
 }
