@@ -26,8 +26,8 @@ export default function Dragger({handleSubmit}: {handleSubmit: (chatLog: string)
         <p className="ant-upload-drag-icon">
             <InboxOutlined />
         </p>
-        <p className="ant-upload-text">클릭하거나 파일을 끌어다 놓으세요</p>
-        <p className="ant-upload-hint">.log 형식</p>
+        <p className="ant-upload-text">클릭하거나 채팅 로그 파일을 끌어다 놓으세요</p>
+        <p className="ant-upload-hint">파일은 어느 곳에 전송되거나 저장되지 않습니다.</p>
     </Dragger>
   )
 }
