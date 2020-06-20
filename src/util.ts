@@ -12,7 +12,7 @@ type ParsedChat = {
     author?: string;
 }
 
-export const DATE_FORMAT = "yyyy-MM-dd HH:mm:SS"
+export const DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
 
 const round = (x: number, unit: number) => {
     return Math.floor(x / unit) * unit;
@@ -22,13 +22,13 @@ const validChat = (maybeChat: string) => {
     return maybeChat[0] === "[" && maybeChat.includes("<")
 }
 
-export const getChattingSpeed = (chatLog: string, timeIntervalInSeconds: number = 10): ChattingSpeed => {
+export const getChattingSpeed = (chatLog: string, timeIntervalInMs: number = 10000): ChattingSpeed => {
     if (chatLog.length === 0) {
         return []
     }
     return chatLog.split("\n").filter(validChat).reduce<ChattingSpeed>((acc, cur) => {
         const { time } = parseChat(cur)
-        const roundedTime = round(time, timeIntervalInSeconds);
+        const roundedTime = round(time, timeIntervalInMs);
         const lastElement = last(acc);
         if (lastElement?.time === roundedTime) {
             lastElement.frequency += 1;
