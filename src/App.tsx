@@ -12,8 +12,10 @@ function App() {
   const chattingSpeed = getChattingSpeed(chatLog);
   return (
     <div className="App">
-      <Dragger handleSubmit={handleSubmit} />
-      <ChattingSpeedChart chattingSpeed={chattingSpeed} />
+      <div style={{padding: "10%"}}>
+        <Dragger handleSubmit={handleSubmit} />
+        <ChattingSpeedChart chattingSpeed={chattingSpeed} />
+      </div>
     </div>
   );
 }
