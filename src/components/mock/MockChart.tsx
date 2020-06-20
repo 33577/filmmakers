@@ -12,10 +12,10 @@ export function MockChart() {
   const { Title } = Typography;
 
   return (
-    <div>
+    <div style={{paddingTop: 40}}>
       <Title level={2} style={{textAlign: "center"}}> 결과 예시 </Title>
       <ChattingSpeedChart chattingSpeed={chattingSpeed} title="전체 채팅 수" />
-      <ChattingSpeedChart chattingSpeed={laughChattingSpeed} title="ㅋㅋㅋ..." />
+      <ChattingSpeedChart chattingSpeed={laughChattingSpeed} title="ㅋㅋㅋㅋ" />
       <ChattingSpeedChart chattingSpeed={youtubeChattingSpeed} title="유튜브 언급" />
       <ChattingSpeedChart chattingSpeed={questionMarkChattingSpeed} title="물음표" />
     </div>
