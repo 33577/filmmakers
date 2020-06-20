@@ -19,6 +19,9 @@ const round = (x: number, unit: number) => {
 }
 
 export const getChattingSpeed = (chatLog: string, timeIntervalInSeconds: number = 10): ChattingSpeed => {
+    if (chatLog.length === 0) {
+        return []
+    }
     return chatLog.split("\n").reduce<ChattingSpeed>((acc, cur) => {
         const { time } = parseChat(cur)
         const roundedTime = round(time, timeIntervalInSeconds);

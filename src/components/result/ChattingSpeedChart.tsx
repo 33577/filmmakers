@@ -2,9 +2,10 @@ import { format } from "date-fns";
 import React from "react";
 import { ResponsiveContainer, XAxis, YAxis, CartesianGrid, Line, LineChart, Tooltip } from "recharts";
 import { ChattingSpeed } from "../../util";
+import isEmpty from "lodash/isEmpty";
 
 export default function ChattingSpeedChart({chattingSpeed}: {chattingSpeed: ChattingSpeed}) {
-    return (
+    return !isEmpty(chattingSpeed) ? (
         <ResponsiveContainer height={320}>
             <LineChart data={chattingSpeed} margin={{ top: 20, left: -20, right: 20 }}>
                 <XAxis
@@ -27,5 +28,5 @@ export default function ChattingSpeedChart({chattingSpeed}: {chattingSpeed: Chat
                 <Line dataKey="frequency" stroke="#ff8900" fillOpacity={0.2} fill="#ff8900" name="빈도" />
             </LineChart>
         </ResponsiveContainer>
-    );
+        ) : null;
 }
