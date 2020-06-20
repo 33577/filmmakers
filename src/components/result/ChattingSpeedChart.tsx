@@ -25,7 +25,7 @@ export default function ChattingSpeedChart({chattingSpeed}: {chattingSpeed: Chat
                 />
                 <CartesianGrid strokeDasharray="3" horizontal={false} />
                 <Tooltip labelFormatter={(label: number | string) => typeof label === "number" ? format(label, 'HH:mm:ss') : null} />
-                <Line dataKey="frequency" stroke="#ff8900" fillOpacity={0.2} fill="#ff8900" name="빈도" />
+                <Line dataKey="frequency" dot={false} stroke="#ff8900" fillOpacity={0.2} name="채팅 수" />
             </LineChart>
         </ResponsiveContainer>
         ) : null;
