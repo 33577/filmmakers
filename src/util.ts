@@ -12,7 +12,7 @@ type ParsedChat = {
     text: string; 
 }
 
-export type FilteringKeyword = "ALL" | "YOUTUBE" | "LAUGH" | "QUESTION_MARK";
+export type FilteringKeyword = "ALL" | "YOUTUBE" | "LAUGH" | "SURPRISE" | "QUESTION_MARK" |  "EXCLAMATION_MARK";
 const WORDS_LIKE_YOUTUBE = ["유튜브", "유튭", "유투브", "유투", "유튜", "유하"]
 
 export const DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
@@ -47,8 +47,12 @@ export const getChattingSpeed = (chatLog: string, keyword: FilteringKeyword = "A
                 return includes(text, WORDS_LIKE_YOUTUBE);
             case "LAUGH":
                 return text.startsWith("ㅋㅋㅋ");
+            case "SURPRISE":
+                return text.startsWith("캬");
             case "QUESTION_MARK":
                 return text.startsWith("?");
+            case "EXCLAMATION_MARK":
+                return text.includes("!");
             default:
                 throw new Error("NOT REACHED");
         }
