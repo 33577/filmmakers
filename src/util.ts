@@ -3,8 +3,18 @@ import { parse } from "date-fns";
 
 export type ChattingSpeed = Array<{
     time: number;
-    frequency: number;
-    texts: string[];
+    allFrequency: number;
+    allTexts: string[];
+    youtubeFrequency: number;
+    youtubeTexts: string[];
+    laughFrequency: number;
+    laughTexts: string[];
+    surpriseFrequency: number;
+    surpriseTexts: string[];
+    questionMarkFrequency: number;
+    questionMarkTexts: string[];
+    exclamationMarkFrequency: number;
+    exclamationMarkTexts: string[];
 }>
 
 type ParsedChat = {
@@ -12,25 +22,56 @@ type ParsedChat = {
     text: string; 
 }
 
-export const getChattingSpeed = (chatLog: string, keyword: FilteringKeyword = "ALL", timeIntervalInMs: number = 10000): ChattingSpeed => {
+export const getChattingSpeed = (chatLog: string, keyword: FilteringKeyword | FilteringKeyword[] = "ALL", timeIntervalInMs: number = 10000): ChattingSpeed => {
     // Assert that chatLog가 시간에 대해 오름차순으로 정렬됨. 
     if (chatLog.length === 0) {
         return []
     }
+    const keywordArray = ensureArray(keyword);
     const parsedChatList = getParsedChatList(chatLog, timeIntervalInMs);
 
-    return parsedChatList.filter(({text}) => filterByKeyword(text, keyword)).reduce<ChattingSpeed>((acc, cur) => {
+    return parsedChatList.reduce<ChattingSpeed>((acc, cur) => {
         const lastElement = last(acc);
-        if (lastElement?.time === cur.time) {
-            lastElement.frequency += 1;
-            lastElement.texts.push(cur.text)
-            return acc;
+        const newLastElement = lastElement?.time === cur.time ? lastElement : {
+          time: cur.time,
+          allFrequency: 0,
+          allTexts: [],
+          youtubeFrequency: 0,
+          youtubeTexts: [],
+          laughFrequency: 0,
+          laughTexts: [],
+          surpriseFrequency: 0,
+          surpriseTexts: [],
+          questionMarkFrequency: 0,
+          questionMarkTexts: [],
+          exclamationMarkFrequency: 0,
+          exclamationMarkTexts: [],
         }
-        return [...acc, {
-            time: cur.time,
-            frequency: 1,
-            texts: [cur.text]
-        }]
+        if(keywordArray.includes("ALL")) {
+          newLastElement.allFrequency += 1;
+          newLastElement.allTexts.push(cur.text);
+        }
+        if(keywordArray.includes("YOUTUBE") && includes(cur.text, WORDS_LIKE_YOUTUBE)) {
+          newLastElement.youtubeFrequency += 1;
+          newLastElement.youtubeTexts.push(cur.text);
+        }
+        if(keywordArray.includes("LAUGH") && cur.text.startsWith("ㅋㅋㅋ")) {
+          newLastElement.laughFrequency += 1;
+          newLastElement.laughTexts.push(cur.text);
+        }
+        if(keywordArray.includes("SURPRISE") && cur.text.startsWith("캬")) {
+          newLastElement.surpriseFrequency += 1;
+          newLastElement.surpriseTexts.push(cur.text);
+        }
+        if(keywordArray.includes("QUESTION_MARK") && cur.text.startsWith("?")) {
+          newLastElement.questionMarkFrequency += 1;
+          newLastElement.questionMarkTexts.push(cur.text);
+        }
+        if(keywordArray.includes("EXCLAMATION_MARK") && cur.text.includes("!")) {
+          newLastElement.exclamationMarkFrequency += 1;
+          newLastElement.exclamationMarkTexts.push(cur.text);
+        }
+        return lastElement?.time === cur.time ? [...acc.slice(0, acc.length-1), newLastElement] : [...acc, newLastElement];
     }, [])
 }
 
@@ -95,4 +136,11 @@ const getParsedChatList = (chatLog: string, timeIntervalInMs: number = 10000): P
           text,
       }
   })
+}
+
+const ensureArray = (x: string | string[]): string[] => {
+  if (typeof x === "string") {
+    return [x];
+  }
+  return x;
 }
