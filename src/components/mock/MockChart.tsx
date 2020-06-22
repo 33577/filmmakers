@@ -2,16 +2,16 @@ import React from 'react';
 import ChattingSpeedChart from "../result/ChattingSpeedChart";
 import { getChattingSpeed } from "../../util";
 import { Typography } from 'antd';
-import { MOCK_CHAT_LOG } from "./mock";
+import { MOCK_CHAT_LOG } from "./mock_censored";
 
 export function MockChart() {
-  const chattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "ALL", 2000);
-  const keywordChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, ["LAUGH", "YOUTUBE", "SURPRISE", "EXCLAMATION_MARK", "QUESTION_MARK"], 2000);
-  const laughChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "LAUGH", 2000);
-  const youtubeChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "YOUTUBE", 2000);
-  const surpriseChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "SURPRISE", 2000);
-  const questionMarkChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "QUESTION_MARK", 2000);  
-  const exclamationMarkChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "EXCLAMATION_MARK", 2000);
+  const chattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "ALL", 20000);
+  const keywordChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, ["LAUGH", "YOUTUBE", "SURPRISE", "EXCLAMATION_MARK", "QUESTION_MARK"], 20000);
+  const laughChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "LAUGH", 20000);
+  const youtubeChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "YOUTUBE", 20000);
+  const surpriseChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "SURPRISE", 20000);
+  const questionMarkChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "QUESTION_MARK", 20000);  
+  const exclamationMarkChattingSpeed = getChattingSpeed(MOCK_CHAT_LOG, "EXCLAMATION_MARK", 20000);
 
   const { Title } = Typography;
 
