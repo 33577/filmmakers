@@ -24,7 +24,8 @@ function App() {
 
   return (
     <div className="App" style={{padding: "10%"}}>
-      <Title style={{textAlign: "center"}}> 채팅 로그 통계 </Title>
+      <Title style={{textAlign: "center"}}> For FILMMAKRES </Title>
+      <p style={{textAlign: "center", marginBottom: 40}}> 스트리머 영상의 채팅 로그를 분석해서, 영상 편집 전에 긴 영상을 확인하는 시간을 줄여줍니다. </p>
       <Dragger handleSubmit={handleSubmit} />
       <ChattingSpeedChart chattingSpeed={chattingSpeed} title="전체 채팅 수" />
       <ChattingSpeedChart chattingSpeed={keywordChattingSpeed} title="키워드별 채팅 수" />
