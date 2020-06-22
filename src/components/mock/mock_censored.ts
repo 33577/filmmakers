@@ -1,4 +1,4 @@
-export const MOCK_CHAT_LOG = `
+const MOCK_CHAT_LOG = `
 # Log started: 2020-06-20 20:33:21 +0900
 [2020-06-20 20:33:21] #lck_korea 채널 입장 중입니다
 [2020-06-20 20:33:21] #lck_korea 채널에 입장했습니다
@@ -34108,4 +34108,6 @@ export const MOCK_CHAT_LOG = `
 [2020-06-20 23:35:08] Viewerstats (23:07-23:33): avg:73,800 min:70,653 max:76,465 [14/70,817+1,865+0+0+2,137+0+1,646+0+0-1,799+0+0-4,013+0]
 # Log closed: 2020-06-20 23:35:08 +0900
 -
-`
+`;
+
+export default MOCK_CHAT_LOG;
